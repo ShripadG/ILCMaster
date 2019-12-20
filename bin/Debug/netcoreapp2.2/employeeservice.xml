@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ilcmasterservice</name>
+    </assembly>
+    <members>
+        <member name="F:employeeservice.Common.DBNames.empmaster">
+            <summary>
+            Name of the table/doc to store employee master data
+            </summary>
+        </member>
+        <member name="F:employeeservice.Common.DBNames.auditdata">
+            <summary>
+            Name of the table/doc to store audit data
+            </summary>
+        </member>
+        <member name="F:employeeservice.Common.DBNames.ilcmaster">
+            <summary>
+            Name of the table/doc to store audit data
+            </summary>
+        </member>
+        <member name="T:employeeservice.Common.Helper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:employeeservice.Common.Helper.tryToGetDate">
+            <summary>
+            
+            </summary>
+            <param name="employees"></param>
+            <returns></returns>
+        </member>
+        <member name="T:employeeservice.Common.IHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:employeeservice.Common.MyMiddlewareExtensions">
+            <summary>
+            Referred : https://andrewlock.net/adding-default-security-headers-in-asp-net-core/
+            </summary>
+        </member>
+        <member name="M:employeeservice.Common.MyMiddlewareExtensions.UseSecurityHeadersMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder,employeeservice.Common.SecurityHeadersBuilder)">
+            <summary>
+            This method is used to for security headers middleware .
+            <param name="app"></param>
+            <param name="builder"></param>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:employeeservice.Common.SecurityHeadersBuilder">
+            <summary>
+            Referred : https://andrewlock.net/adding-default-security-headers-in-asp-net-core/
+            </summary>
+        </member>
+        <member name="M:employeeservice.Common.SecurityHeadersBuilder.AddCustomHeader(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="header"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Common.SecurityHeadersBuilder.RemoveHeader(System.String)">
+            <summary>
+            This method is used to remove header.
+            </summary>
+            <param name="header"></param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Common.SecurityHeadersBuilder.Build">
+            <summary>
+            used to build security policy.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:employeeservice.Common.SecurityHeadersMiddleware">
+            <summary>
+            Referred : https://andrewlock.net/adding-default-security-headers-in-asp-net-core/
+            </summary>
+        </member>
+        <member name="M:employeeservice.Common.SecurityHeadersMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,employeeservice.Common.SecurityHeadersPolicy)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="policy"></param>
+        </member>
+        <member name="M:employeeservice.Common.SecurityHeadersMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invoking Http context.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:employeeservice.Common.SecurityHeadersPolicy">
+            <summary>
+            Referred : https://andrewlock.net/adding-default-security-headers-in-asp-net-core/
+            </summary>
+        </member>
+        <member name="P:employeeservice.Common.SecurityHeadersPolicy.SetHeaders">
+            <summary>
+            Setting headers.
+            </summary>
+        </member>
+        <member name="P:employeeservice.Common.SecurityHeadersPolicy.RemoveHeaders">
+            <summary>
+            Removing headers.
+            </summary>
+        </member>
+        <member name="T:employeeservice.Controllers.IlcMastersController">
+            <summary>
+            This class contains methods for CRUD operations
+            </summary>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.#ctor(System.Text.Encodings.Web.HtmlEncoder,employeeservice.Processors.IPostIlcMasterProcessor,employeeservice.Processors.IPutIlcMasterProcessor,employeeservice.Common.IHelper,employeeservice.Services.ICloudantService)">
+            <summary>
+            The default constructor 
+            </summary>
+            <param name="htmlEncoder"></param>
+            <param name="postIlcMasterProcessor"></param>
+            <param name="putIlcMasterProcessor"></param>
+            <param name="helper"></param>
+            <param name="cloudantService"></param>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.Get">
+            <summary>
+            Get all the records
+            </summary>
+            <returns>returns all records from database</returns>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.GetByID(System.String)">
+            <summary>
+            Get record by ID
+            </summary>
+            <param name="id">ID to be selected</param>
+            <returns>record for the given id</returns>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.Post(employeeservice.Models.IlcMasterAddRequest)">
+            <summary>
+            Create a new record
+            </summary>
+            <param name="ilcmaster">New record to be created</param>
+            <returns>status of the newly added record</returns>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.Update(employeeservice.Models.IlcMaster)">
+            <summary>
+            Update an existing record by giving _id and _rev values
+            </summary>
+            <param name="ilcmaster">record to be updated for given _id and _rev</param>
+            <returns>status of the record updated</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:employeeservice.Controllers.IlcMastersController.Delete(System.String,System.String)" -->
+        <member name="M:employeeservice.Controllers.IlcMastersController.Upload(ilcmasterservice.Models.FileUploadViewModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Controllers.IlcMastersController.ConvertFromExcelToJson(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            This method will convert the given excel into JSON
+            TO DO: add {"docs": at the start of the generated JSON.
+            </summary>
+            <returns>returns status of conversion</returns>
+        </member>
+        <member name="T:employeeservice.Models.ResponseStatus`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:employeeservice.Models.ResponseStatus`1.Response">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:employeeservice.Models.ResponseStatus`1.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:employeeservice.Models.ResponseStatus`1.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:employeeservice.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:employeeservice.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:employeeservice.Services.CloudantService">
+            <summary>
+            This class contains methods to connect to db for CRUD operations
+            </summary>
+        </member>
+        <member name="F:employeeservice.Services.CloudantService._cloudantCreds">
+            <summary>
+            For credentials of db
+            </summary>
+        </member>
+        <member name="F:employeeservice.Services.CloudantService._urlEncoder">
+            <summary>
+            The url encoder
+            </summary>
+        </member>
+        <member name="F:employeeservice.Services.CloudantService._factory">
+            <summary>
+            To connect to http service
+            </summary>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.#ctor(employeeservice.Models.Creds,System.Text.Encodings.Web.UrlEncoder,System.Net.Http.IHttpClientFactory)">
+            <summary>
+            The default constructor
+            </summary>
+            <param name="creds"></param>
+            <param name="urlEncoder"></param>
+            <param name="factory"></param>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.CreateAsync(System.Object,System.String)">
+            <summary>
+            This method creates new db or inserts into it.
+            </summary>
+            <param name="item">the item to be inserted</param>
+            <param name="dbname">the db in which insertion needs to be made</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.UpdateAsync(System.Object,System.String)">
+            <summary>
+            This method updates the given item/record
+            </summary>
+            <param name="item">the item to be updated</param>
+            <param name="dbname">the db in which update needs to be made</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.GetAllAsync(System.String)">
+            <summary>
+            This method gets all records from given db.
+            </summary>
+            <param name="dbname">the db from which select needs to be performed</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.GetByIdAsync(System.String,System.String)">
+            <summary>
+            This method is used to get by id
+            </summary>
+            <param name="id">the id of the record to be fetched</param>
+            <param name="dbname">the db from which record needs to be fetched.</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.DeleteAsync(System.String,System.String,System.String)">
+            <summary>
+            This method is used to delete the record with given id and rev
+            </summary>
+            <param name="id">id of the record to be deleted</param>
+            <param name="rev">revision number of the record to be fetched. It must be latest.</param>
+            <param name="dbname">db from which deletion needs to be performed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.DeleteAsync(System.String)">
+            <summary>
+            This method is used to delete the all the record from table
+            </summary>
+            <param name="dbname">db from which deletion needs to be performed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:employeeservice.Services.CloudantService.BulkUpload(System.String,System.String)">
+            <summary>
+            This method is used to perform bulk insertion
+            </summary>
+            <returns>returns success/failed response</returns>
+        </member>
+        <member name="T:employeeservice.Services.ICloudantService">
+            <summary>
+            This is the interface for 
+            </summary>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.CreateAsync(System.Object,System.String)">
+            <summary>
+            Create a new record
+            </summary>
+            <param name="item">the record to be added.</param>
+            <param name="dbname">the db table to be updated</param>
+            <returns>returns the status of the add record</returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.UpdateAsync(System.Object,System.String)">
+            <summary>
+            Update given record
+            </summary>
+            <param name="item">the record to be updated</param>
+            <param name="dbname">the db table to be updated</param>
+            <returns>returns the status of the updated record</returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.GetAllAsync(System.String)">
+            <summary>
+            Returns the list of all records in the database
+            </summary>
+            <returns>Returns the list of all records in the database</returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.GetByIdAsync(System.String,System.String)">
+            <summary>
+            Returns the record for the given id.
+            </summary>
+            <param name="id">id of the record to be retrieved</param>
+            <returns>returns the record for given id</returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.DeleteAsync(System.String)">
+            <summary>
+            Deletes the record for the given id
+            </summary>
+            <returns>returns </returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.DeleteAsync(System.String,System.String,System.String)">
+            <summary>
+            Deletes the record for the given id
+            </summary>
+            <param name="id">id of the record to be deleted</param>
+            <param name="rev">latest revision number of the record to be deleted</param>
+            <returns>returns </returns>
+        </member>
+        <member name="M:employeeservice.Services.ICloudantService.BulkUpload(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dbname"></param>
+            <param name="jsonfilepath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="env"></param>
+        </member>
+        <member name="M:Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+        <member name="T:Startup.LoggingHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Startup.LoggingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
